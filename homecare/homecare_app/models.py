@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class User(models.Model):
-    user_id = models.AutoField(primary_key=True)  # Added user_id
+    user_id = models.AutoField(primary_key=True)  
     user_name = models.CharField(max_length=100)
     user_email = models.EmailField(max_length=100)
     user_pass = models.CharField(max_length=100)
@@ -15,7 +15,7 @@ class User(models.Model):
 
 
 class Worker(models.Model):
-    worker_id = models.AutoField(primary_key=True)  # Added worker_id
+    worker_id = models.AutoField(primary_key=True)  
     worker_name = models.CharField(max_length=100)
     worker_email = models.EmailField(max_length=100)
     worker_pass = models.CharField(max_length=100)
@@ -29,7 +29,7 @@ class Worker(models.Model):
 
 
 class Service(models.Model):
-    service_id = models.AutoField(primary_key=True)  # Added service_id
+    service_id = models.AutoField(primary_key=True)  
     service_name = models.CharField(max_length=100)
     service_desc = models.TextField()
     service_rate = models.DecimalField(max_digits=10, decimal_places=2)
