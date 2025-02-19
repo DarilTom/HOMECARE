@@ -2,18 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-# class User(models.Model):
-#     user_id = models.AutoField(primary_key=True)  
-#     user_name = models.CharField(max_length=100)
-#     user_email = models.EmailField(max_length=100)
-#     user_pass = models.CharField(max_length=100)
-#     user_blood = models.CharField(max_length=3)
-#     user_phone = models.CharField(max_length=15)
-#     user_address = models.TextField()
-
-#     def __str__(self):
-#         return self.user_name
-
 
 class Worker(models.Model):
     worker_id = models.AutoField(primary_key=True)  
@@ -24,6 +12,7 @@ class Worker(models.Model):
     worker_dob = models.DateField()
     worker_blood = models.CharField(max_length=3)
     worker_address = models.TextField()
+    worker_photo = models.ImageField(upload_to='worker_photos/', null=True, blank=True)  # Add this line
 
     def __str__(self):
         return self.worker_name
@@ -48,8 +37,6 @@ class Payment(models.Model):
         return f"Payment {self.pay_id}"
 
 
-
-
 class Booking(models.Model):
     booking_id = models.AutoField(primary_key=True)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -60,6 +47,4 @@ class Booking(models.Model):
 
     def __str__(self):
         return f"Booking {self.booking_id}"
-
-
 
