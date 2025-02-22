@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Sign Up {% endblock %}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(to bottom, #0f0c29, #302b63, #24243e);
+        }
+
+        .container {
+            width: 350px;
+            background: #3e2f84; /* Changed to a distinct violet shade */
+            border-radius: 10px;
+            box-shadow: 5px 10px 30px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        h2 {
+            color: #fff;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        form {
+            background: #3a1f58; /* Another subtle contrast for form */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            background: #fff;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background: #3e2f84;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #6d44b8;
+        }
+
+        .switch {
+            background: #3e2f84;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+            cursor: pointer;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>{% block form_title %} Sign Up {% endblock %}</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="User Name" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="btn">
+                {% block button_text %} Sign Up {% endblock %}
+            </button>
+        </form>
+
+        <div class="switch">
+            {% block switch_text %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endblock %}
+        </div>
+    </div>
+
+</body>
+</html>
+
