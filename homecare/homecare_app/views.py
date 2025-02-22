@@ -2,7 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
-
+from django.shortcuts import render, get_object_or_404
+from .models import Worker
 
 
 
@@ -27,3 +28,8 @@ def home(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+def worker_profile(request, worker_id):
+    worker = get_object_or_404(Worker, worker_id=worker_id)
+    return render(request, 'myapp/worker_profile.html', {'worker': worker})
+# Compare this snippet from homecare/homecare_app/views.py:
