@@ -5,6 +5,8 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, get_object_or_404
 from .models import Worker
 
+def landing_page(request):
+    return render(request, 'myapp/landingpage.html')
 
 
 def user_login(request):
