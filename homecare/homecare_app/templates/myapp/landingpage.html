@@ -84,37 +84,39 @@
 
 <!-- Custom Styles -->
 <style>
-    /* Reduce container width */
-    .offcanvas {
-        max-width: 280px; /* Adjust this value as needed */
-    }
+  
+.offcanvas {
+    max-width: 220px;
+     padding: 10px;
+}
 
-    /* Add more space between menu items */
-    .menu-item {
-        transition: all 0.3s ease-in-out;
-        display: flex;
-        align-items: center;
-        color: white;
-        font-size: 1rem;
-        padding: 12px 16px; /* Increased padding */
-        border-radius: 5px;
-        margin-bottom: 8px; /* Added spacing between menu items */
-    }
+/* Keep the menu items spacious */
+.menu-item {
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 14px; /* Adjusted padding */
+    border-radius: 5px;
+    margin-bottom: 6px; /* Slightly reduced spacing */
+}
 
-    /* Hover effect */
-    .menu-item:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-        color: #f8f9fa;
-        transform: scale(1.05);
-    }
+/* Hover effect */
+.menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #f8f9fa;
+    transform: scale(1.05);
+}
 
-    .menu-item i {
-        transition: transform 0.3s ease-in-out;
-    }
+.menu-item i {
+    transition: transform 0.3s ease-in-out;
+}
 
-    .menu-item:hover i {
-        transform: scale(1.2);
-    }
+.menu-item:hover i {
+    transform: scale(1.2);
+}
+
 </style>
 
 <!-- Auto-Close Offcanvas on Link Click -->
@@ -305,68 +307,8 @@
 
        
        <!-- Footer -->
-<footer class="footer py-5 bg-dark text-light" id="contact">
-    <div class="container">
-        <div class="row text-center text-md-start">
-            <!-- Quick Links -->
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <h5 class="text-uppercase mb-3">Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li><a class="text-light text-decoration-none" href="#">Home</a></li>
-                    <li><a class="text-light text-decoration-none" href="#">About</a></li>
-                    <li><a class="text-light text-decoration-none" href="#">Services</a></li>
-                    <li><a class="text-light text-decoration-none" href="#contact">Contact</a></li>
-                </ul>
-            </div>
 
-            <!-- Contact Information -->
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <h5 class="text-uppercase mb-3">Contact Info</h5>
-                <p><i class="fas fa-phone-alt me-2"></i> +91 9876543210</p>
-                <p><i class="fas fa-envelope me-2"></i> <a href="mailto:info@example.com" class="text-light text-decoration-none">info@example.com</a></p>
-                <p><i class="fas fa-map-marker-alt me-2"></i> 123 Main Street, City, Country</p>
-            </div>
-
-            <!-- Social Media -->
-            <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
-                <h5 class="text-uppercase mb-3">Follow Us</h5>
-                <div class="d-flex gap-2">
-                    <a class="btn btn-outline-light rounded-circle" href="https://facebook.com">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a class="btn btn-outline-light rounded-circle" href="https://twitter.com">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a class="btn btn-outline-light rounded-circle" href="https://instagram.com">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <a class="btn btn-outline-light rounded-circle" href="https://linkedin.com">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Newsletter -->
-            <div class="col-lg-3 col-md-6">
-                <h5 class="text-uppercase mb-3">NestAssure</h5>
-                <form>
-                    <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Your Email" required>
-                        <button class="btn btn-primary" type="submit">Subscribe</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <!-- Copyright -->
-        <div class="row mt-4">
-            <div class="col text-center">
-                <hr class="border-light">
-                <p class="mb-0">&copy; 2025 NestAssure Company. All Rights Reserved.</p>
-            </div>
-        </div>
-    </div>
-</footer>
+       {% include 'footer.html' %}
 
         
         <!-- Portfolio Modals-->
@@ -583,7 +525,7 @@
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
-        <script src="{% static 'myapp/jscopy/scripts.js' %}"></script> -->
+        <script src="{% static 'myapp/jscopy/scripts.js' %}"></script>
         <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
         <script src="{% static 'myapp/js/scripts.js' %}" ></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
