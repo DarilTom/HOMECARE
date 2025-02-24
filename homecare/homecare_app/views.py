@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, get_object_or_404
-from .models import Worker
+from .models import Worker , Service
 
 def landing_page(request):
     return render(request, 'myapp/landingpage.html')
@@ -35,3 +35,9 @@ def worker_profile(request, worker_id):
     worker = get_object_or_404(Worker, worker_id=worker_id)
     return render(request, 'myapp/worker_profile.html', {'worker': worker})
 # Compare this snippet from homecare/homecare_app/views.py:
+
+
+@login_required
+def service_list(request):
+    services = Service.objects.all()
+    return render(request, 'myapp/servicelist.html', {'services': services})
