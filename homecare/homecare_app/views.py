@@ -29,7 +29,7 @@ def home(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('login')
+    return render(request, 'myapp/landingpage.html')
 
 def worker_profile(request, worker_id):
     worker = get_object_or_404(Worker, worker_id=worker_id)
