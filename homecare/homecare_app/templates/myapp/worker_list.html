@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workers for {{ service.service_name }}</title>
+    {% load static %}
+    <style>
+        .worker-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .worker-item {
+            text-align: center;
+        }
+        .worker-photo {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h2>Workers for {{ service.service_name }}</h2>
+    <ul class="worker-list">
+        {% for worker in workers %}
+            <li class="worker-item">
+                {% if worker.worker_photo %}
+                    <img class="worker-photo" src="{{ worker.worker_photo.url }}" alt="{{ worker.worker_name }}">
+                {% else %}
+                    <img class="worker-photo" src="{% static 'myapp/images/default_worker.jpg' %}" alt="Default Worker">
+                {% endif %}
+                <p>{{ worker.worker_name }}</p>
+            </li>
+        {% empty %}
+            <li>No workers available for this service.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'service_list' %}">Back to Services</a>
+</body>
+</html>

@@ -13,7 +13,7 @@ class Worker(models.Model):
     worker_blood = models.CharField(max_length=3)
     worker_address = models.TextField()
     worker_photo = models.ImageField(upload_to='worker_photos/', null=True, blank=True)  # Add this line
-
+    servicecatagory = models.ForeignKey('Service', on_delete=models.CASCADE, related_name='workers', null=True, blank=True)
     def __str__(self):
         return self.worker_name
 

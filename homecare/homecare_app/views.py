@@ -41,3 +41,14 @@ def worker_profile(request, worker_id):
 def service_list(request):
     services = Service.objects.all()
     return render(request, 'myapp/servicelist.html', {'services': services})
+
+
+def worker_list(request, service_id):
+    # Fetch the service using the service_id
+    service = get_object_or_404(Service, service_id=service_id)
+    # Using the related_name 'workers' to get all workers for this service
+    workers = service.workers.all()
+    return render(request, 'myapp/worker_list.html', {
+        'service': service,
+        'workers': workers,
+    })
