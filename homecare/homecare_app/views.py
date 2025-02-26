@@ -42,6 +42,10 @@ def service_list(request):
     services = Service.objects.all()
     return render(request, 'myapp/servicelist.html', {'services': services})
 
+# 25-1-25 sign up 
+def signup_page(request):
+    return render(request, "myapp/signup.html")
+
 
 def worker_list(request, service_id):
     # Fetch the service using the service_id
