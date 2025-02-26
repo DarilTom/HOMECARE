@@ -52,11 +52,7 @@ def worker_list(request, service_id):
         'service': service,
         'workers': workers,
     })
-# 25-1-25
+# 25-1-25 worker 
 def worker_myprofile(request, worker_id):
     worker = get_object_or_404(Worker, pk=worker_id)
     return render(request, 'myapp/worker_myprofile.html', {'worker': worker})
-
-def worker_home(request):
-    worker = Worker.objects.get(worker_email=request.user.email)  # Assuming user email matches worker email
-    return render(request, 'myapp/worker_home.html', {'worker': worker})
