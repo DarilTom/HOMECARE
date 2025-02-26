@@ -14,10 +14,7 @@ urlpatterns = [
     path('workers/<int:service_id>/', views.worker_list, name='worker_list'),
 #   25-1-25
    path('worker/profile/<int:worker_id>/', views.worker_myprofile, name='worker_myprofile'),
-<<<<<<< HEAD
-=======
    path("signup/",views.signup_page, name="signup"),
 
 
->>>>>>> gjvproject
 ]
