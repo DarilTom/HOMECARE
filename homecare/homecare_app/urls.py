@@ -13,5 +13,5 @@ urlpatterns = [
     path('services/',views.service_list, name='service_list'),
     path('workers/<int:service_id>/', views.worker_list, name='worker_list'),
 #   25-1-25
-   path('worker/profile/<int:worker_id>/', views.worker_myprofile, name='worker_profile'),
+   path('worker/profile/<int:worker_id>/', views.worker_myprofile, name='worker_myprofile'),
 ]
