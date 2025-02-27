@@ -37,10 +37,11 @@ class Worker(models.Model):
     worker_phone = models.CharField(max_length=15)
     worker_dob = models.DateField()
     worker_blood = models.CharField(max_length=3)
-    worker_state = models.CharField(max_length=100)
-    worker_district = models.CharField(max_length=100)
-    worker_town = models.CharField(max_length=100)
-    worker_housename = models.CharField(max_length=255)
+    worker_state = models.CharField(max_length=100, default="Unknown")
+    worker_district = models.CharField(max_length=100, default="Unknown")
+    worker_town = models.CharField(max_length=100, default="Unknown")
+    worker_housename = models.CharField(max_length=255, default="Unknown")
+
     worker_photo = models.ImageField(upload_to='worker_photos/', null=True, blank=True)  
     servicecatagory = models.ForeignKey('Service', on_delete=models.CASCADE, related_name='workers', null=True, blank=True)
 
