@@ -1,179 +1,22 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
-    <style>
-        /* Global Styles */
-        body, html {
-            height: 100%;
-            margin: 0;
-            scroll-behavior: smooth;
-            display: flex;
-            flex-direction: column;
-            overflow-x: hidden;
-        }
+<form method="post">
+    {% csrf_token %}
+    <label>Username:</label>
+    {{ form.username }} <br>
+    
+    <label>Email:</label>
+    {{ form.email }} <br>
+    
+    <label>Password:</label>
+    {{ form.password }} <br>
+    
+    <label>Confirm Password:</label>
+    {{ form.password2 }} <br>
 
-        /* Page Wrapper */
-        .page-wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-            overflow-y: auto;
-        }
+    <button type="submit">Sign Up</button>
+</form>
 
-        /* Full-Page Sign Up Section */
-        .signup-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            flex-grow: 1;
-            padding: 20px;
-            margin-top: 40px;
-        }
-
-        /* Sign Up Box */
-        .signup-box {
-            width: 100%;
-            max-width: 350px;
-            background: white;
-            padding: 30px;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-        }
-
-        /* Password Toggle */
-        .password-wrapper {
-            position: relative;
-        }
-
-        .password-wrapper .toggle-password {
-            position: absolute;
-            top: 50%;
-            right: 15px;
-            transform: translateY(-50%);
-            cursor: pointer;
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: gray;
-        }
-
-        /* Footer Section */
-        .footer-section {
-            text-align: center;
-            background-color: #ffffff;
-            color: white;
-            padding: 15px;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-
-        /* Mobile Adjustments */
-        @media (max-width: 576px) {
-            .signup-box {
-                padding: 15px;
-                max-width: 90%;
-            }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="page-wrapper">
-        <!-- Logo Section -->
-        {% include 'logospace.html' %}
-
-        <!-- Full-Page Sign Up Section -->
-        <section class="signup-section">
-            <div class="signup-box">
-                <h3 class="text-center">Sign Up</h3>
-                <form id="signup-form" method="post" class="needs-validation" novalidate>
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="username" class="form-label">User Name</label>
-                        <input type="text" class="form-control" name="username" required>
-                        <div class="invalid-feedback">Please enter your username.</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" name="email" required>
-                        <div class="invalid-feedback">Please enter a valid email address.</div>
-                    </div>
-                    <div class="mb-3 password-wrapper">
-                        <label for="password" class="form-label">Password</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="password" name="password" required>
-                            <button class="toggle-password" type="button" onclick="togglePasswordVisibility('password')">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                        </div>
-                        <div class="invalid-feedback">Please enter your password.</div>
-                    </div>
-                    <div class="mb-3 password-wrapper">
-                        <label for="confirm-password" class="form-label">Confirm Password</label>
-                        <div class="input-group">
-                            <input type="password" class="form-control" id="confirm-password" name="confirm-password" required>
-                            <button class="toggle-password" type="button" onclick="togglePasswordVisibility('confirm-password')">
-                                <i class="bi bi-eye"></i>
-                            </button>
-                        </div>
-                        <div class="invalid-feedback">Please confirm your password.</div>
-                    </div>
-                    <button type="submit" class="btn btn-primary w-100">Sign Up</button>
-                    
-                    <!-- Login Link -->
-                    <p class="text-center mt-3">
-                        Already have an account? <a href="{% url 'login' %}" class="text-primary">Login</a>
-                    </p>
-                </form>
-            </div>
-        </section>
-
-        <!-- Footer Section -->
-        <section class="footer-section">
-            {% include 'footer.html' %}
-        </section>
+{% if form.errors %}
+    <div style="color: red;">
+        {{ form.errors }}
     </div>
-
-    <!-- Scripts -->
-    <script>
-        function togglePasswordVisibility(id) {
-            var passwordField = document.getElementById(id);
-            var toggleButton = passwordField.nextElementSibling.querySelector("i");
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                toggleButton.classList.remove("bi-eye");
-                toggleButton.classList.add("bi-eye-slash");
-            } else {
-                passwordField.type = "password";
-                toggleButton.classList.remove("bi-eye-slash");
-                toggleButton.classList.add("bi-eye");
-            }
-        }
-
-        (function() {
-            'use strict';
-            var forms = document.querySelectorAll('.needs-validation');
-            Array.prototype.slice.call(forms).forEach(function(form) {
-                form.addEventListener('submit', function(event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault();
-                        event.stopPropagation();
-                    }
-                    form.classList.add('was-validated');
-                }, false);
-            });
-        })();
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-</html>
+{% endif %}

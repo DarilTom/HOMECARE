@@ -4,6 +4,23 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, get_object_or_404
 from .models import Worker , Service,Booking
+from .forms import SignupForm # type: ignore
+
+
+
+def signup(request):
+    if request.method == "POST":
+        form = SignupForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])  # Hash the password
+            user.save()
+            return redirect("login")  # Redirect to login page after signup
+    else:
+        form = SignupForm()
+    
+    return render(request, "myapp/signup.html", {"form": form})
+
 
 def landing_page(request):
     return render(request, 'myapp/landingpage.html')

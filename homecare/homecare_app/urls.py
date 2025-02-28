@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import user_login, home, user_logout, worker_profile
+from .views import signup, user_login, home, user_logout, worker_profile
 from django.contrib.auth import views as auth_views
 from . import views
 
@@ -14,7 +14,7 @@ urlpatterns = [
     path('workers/<int:service_id>/', views.worker_list, name='worker_list'),
 #   25-1-25
    path('worker/profile/<int:worker_id>/', views.worker_myprofile, name='worker_myprofile'),
-   path("signup/",views.signup_page, name="signup"),
+   path("signup/",signup, name="signup"),
 #28-2-25
 path('worker/<int:worker_id>/bookings/',views.worker_booking_list, name='worker_booking_list'),
 
