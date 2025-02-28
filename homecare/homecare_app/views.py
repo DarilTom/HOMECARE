@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, get_object_or_404
-from .models import Worker , Service
+from .models import Worker , Service,Booking
 
 def landing_page(request):
     return render(request, 'myapp/landingpage.html')
@@ -60,3 +60,10 @@ def worker_list(request, service_id):
 def worker_myprofile(request, worker_id):
     worker = get_object_or_404(Worker, pk=worker_id)
     return render(request, 'myapp/worker_myprofile.html', {'worker': worker})
+
+# 28-2-25
+def worker_booking_list(request, worker_id):
+    worker = get_object_or_404(Worker, pk=worker_id)
+    bookings = Booking.objects.filter(worker_id=worker).select_related('user_id')
+
+    return render(request, 'myapp/worker_booking_list.html', {'worker': worker, 'bookings': bookings})

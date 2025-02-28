@@ -15,6 +15,7 @@ urlpatterns = [
 #   25-1-25
    path('worker/profile/<int:worker_id>/', views.worker_myprofile, name='worker_myprofile'),
    path("signup/",views.signup_page, name="signup"),
-
+#28-2-25
+path('worker/<int:worker_id>/bookings/',views.worker_booking_list, name='worker_booking_list'),
 
 ]

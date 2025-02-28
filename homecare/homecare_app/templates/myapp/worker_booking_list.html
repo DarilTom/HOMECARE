@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings for {{ worker.worker_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .worker-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            justify-content: center;
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+        .worker-card {
+            display: flex;
+            align-items: center;
+            background: white;
+            border-radius: 30px;
+            padding: 20px 15px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .worker-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0px 6px 12px rgba(255, 203, 15, 0.61);
+        }
+        .worker-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 15px;
+            border: 2px solid #ddd;
+        }
+        .worker-name {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: left;
+        }
+        .back-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 30px;
+            background-color:rgb(234, 216, 54);
+            border-radius: 5%;
+            margin:left;
+            font-size: 24px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+        .back-button:hover {
+            background-color:rgb(52, 194, 123);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            .worker-container {
+                grid-template-columns: 1fr;
+            }
+            .worker-card {
+                justify-content: center;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>BOOKING LIST</h2>
+
+    <div class="worker-container">
+        {% for booking in bookings %}
+            <div class="worker-card">
+                {% if booking.user_id.userprofile.profile_picture %}
+                    <img src="{{ booking.user_id.userprofile.profile_picture.url }}" alt="User Image" class="worker-image">
+                {% else %}
+                    <img src="/static/default_profile.jpg" alt="User Image" class="worker-image"> 
+                {% endif %}
+                <span class="worker-name">{{ booking.user_id.username |upper }}</span>
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="#" class="back-button">←</a>
+    {% include 'footer.html' %}
+
+</body>
+</html>
