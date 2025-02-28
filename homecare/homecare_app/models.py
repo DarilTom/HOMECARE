@@ -8,7 +8,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     blood_group = models.CharField(max_length=5, blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
-    state = models.CharField(max_length=100, blank=True, null=True)
     district = models.CharField(max_length=100, blank=True, null=True)
     town = models.CharField(max_length=100, blank=True, null=True)
     housename = models.CharField(max_length=255, blank=True, null=True)
