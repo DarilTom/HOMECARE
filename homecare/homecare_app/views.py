@@ -5,21 +5,44 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.shortcuts import render, get_object_or_404
 from .models import Worker , Service,Booking
 from .forms import SignupForm # type: ignore
+from django.contrib.auth.models import User
+from django.contrib import messages
 
 
 
 def signup(request):
     if request.method == "POST":
-        form = SignupForm(request.POST)
-        if form.is_valid():
-            user = form.save(commit=False)
-            user.set_password(form.cleaned_data['password'])  # Hash the password
-            user.save()
-            return redirect("login")  # Redirect to login page after signup
-    else:
-        form = SignupForm()
-    
-    return render(request, "myapp/signup.html", {"form": form})
+        first_name = request.POST["first_name"]
+        last_name = request.POST["last_name"]
+        username = request.POST["username"]
+        email = request.POST["email"]
+        password = request.POST["password"]
+        confirm_password = request.POST["confirm-password"]
+
+        if password != confirm_password:
+            messages.error(request, "Passwords do not match.")
+            return render(request, "signup.html")
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already taken.")
+            return render(request, "signup.html")
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email already in use.")
+            return render(request, "signup.html")
+
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password,
+            first_name=first_name,
+            last_name=last_name,
+        )
+        user.save()
+        messages.success(request, "Signup successful! Please log in.")
+        return redirect("login")  # Redirect to login page
+
+    return render(request, "myapp/signup.html")
 
 
 def landing_page(request):

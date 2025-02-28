@@ -78,7 +78,8 @@
             <div class="container">
                 <div class="masthead-subheading">WE CARE FOR YOU</div>
                 <div class="masthead-heading text-uppercase">WELCOME TO OUR AGENCY</div>
-                <div class="masthead-subheading">{{ user.username|upper }}</div>
+                <div class="masthead-subheading">{{ user.first_name|upper }} {{ user.last_name|upper }}</div>
+
             </div>
         </header>
       <!-- this logout conformation -->
