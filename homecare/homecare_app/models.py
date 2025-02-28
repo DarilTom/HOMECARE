@@ -29,19 +29,16 @@ def save_user_profile(sender, instance, **kwargs):
 
 # Worker Model
 class Worker(models.Model):
-    worker_id = models.AutoField(primary_key=True)  
-    worker_username = models.CharField(max_length=100, unique=True, default="default_username")  # Added field
+    worker_id = models.AutoField(primary_key=True)
     worker_name = models.CharField(max_length=100)
     worker_email = models.EmailField(max_length=100)
     worker_pass = models.CharField(max_length=100)
     worker_phone = models.CharField(max_length=15)
     worker_dob = models.DateField()
     worker_blood = models.CharField(max_length=3)
-    worker_state = models.CharField(max_length=100, default="Unknown")
     worker_district = models.CharField(max_length=100, default="Unknown")
     worker_town = models.CharField(max_length=100, default="Unknown")
     worker_housename = models.CharField(max_length=255, default="Unknown")
-
     worker_photo = models.ImageField(upload_to='worker_photos/', null=True, blank=True)  
     servicecatagory = models.ForeignKey('Service', on_delete=models.CASCADE, related_name='workers', null=True, blank=True)
 
