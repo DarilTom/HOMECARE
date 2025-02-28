@@ -8,7 +8,6 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     blood_group = models.CharField(max_length=5, blank=True, null=True)
     phone_number = models.CharField(max_length=15, blank=True, null=True)
-    state = models.CharField(max_length=100, blank=True, null=True)
     district = models.CharField(max_length=100, blank=True, null=True)
     town = models.CharField(max_length=100, blank=True, null=True)
     housename = models.CharField(max_length=255, blank=True, null=True)
@@ -38,11 +37,9 @@ class Worker(models.Model):
     worker_phone = models.CharField(max_length=15)
     worker_dob = models.DateField()
     worker_blood = models.CharField(max_length=3)
-    worker_state = models.CharField(max_length=100, default="Unknown")
     worker_district = models.CharField(max_length=100, default="Unknown")
     worker_town = models.CharField(max_length=100, default="Unknown")
     worker_housename = models.CharField(max_length=255, default="Unknown")
-
     worker_photo = models.ImageField(upload_to='worker_photos/', null=True, blank=True)  
     servicecatagory = models.ForeignKey('Service', on_delete=models.CASCADE, related_name='workers', null=True, blank=True)
 
