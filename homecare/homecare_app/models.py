@@ -30,7 +30,7 @@ def save_user_profile(sender, instance, **kwargs):
 # Worker Model
 class Worker(models.Model):
     worker_id = models.AutoField(primary_key=True)  
-    worker_username = models.CharField(max_length=100, unique=True, default="default_username")  # Added field
+    # worker_username = models.CharField(max_length=100, unique=True, default="default_username")  # Added field
     worker_name = models.CharField(max_length=100)
     worker_email = models.EmailField(max_length=100)
     worker_pass = models.CharField(max_length=100)
